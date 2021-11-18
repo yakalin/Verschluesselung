@@ -1,5 +1,7 @@
 package yakalin.cipher;
 
+import java.util.Locale;
+
 /**
  * In dieser Klasse ist der Grundbaustein für die Verschlüsselungen.
  * @author Yusuf Akalin
@@ -9,20 +11,22 @@ public class MonoAlphabeticCipher implements Cipher {
 
     //Das Geheimalphabet
     private String secretAlphabet;
+    //Das normale Alphabet
+    private static String normalAlphabet="abcdefghijklmnopqrstuvwxyzäöüß";
 
     //Konstruktor
     public MonoAlphabeticCipher(){
-
+        this.secretAlphabet="abcdefghijklmnopqrstuvwxyzäöüß";
     }
 
     //Gibt Geheimalphabet zurück
     public String getSecretAlphabet() {
-        return secretAlphabet;
+        return this.secretAlphabet;
     }
 
     //Setzt Geheimalphabet
     protected void setSecretAlphabet(String secretAlphabet){
-
+        this.secretAlphabet=secretAlphabet;
     }
 
     /**
@@ -32,9 +36,18 @@ public class MonoAlphabeticCipher implements Cipher {
      */
     @Override
     public String encrypt(String text){
-        String encryptedText="";
-
-        return encryptedText;
+        StringBuilder ergebnis = new StringBuilder();
+        int i;
+        for(char c : text.toLowerCase().toCharArray()){
+            i=text.indexOf(String.valueOf(c));
+            if(i>=0){
+                ergebnis.append(Character.toLowerCase(this.secretAlphabet.charAt(i)));
+            }
+            else{
+                ergebnis.append(c);
+            }
+        }
+        return ergebnis.toString();
     }
 
     /**
@@ -44,8 +57,16 @@ public class MonoAlphabeticCipher implements Cipher {
      */
     @Override
     public String decrypt(String text){
-        String decryptedText="";
-
-        return decryptedText;
+        StringBuilder entschlüsseln= new StringBuilder();
+        for(char c : text.toLowerCase().toCharArray()){
+            int i = secretAlphabet.indexOf(String.valueOf(c));
+            if(i>=0){
+                entschlüsseln.append(Character.toLowerCase(normalAlphabet.charAt(i)));
+            }
+            else{
+                entschlüsseln.append(c);
+            }
+        }
+        return entschlüsseln.toString();
     }
 }

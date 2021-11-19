@@ -15,6 +15,9 @@ public class ShiftCipher extends MonoAlphabeticCipher {
 
     //Setzt den Wert, um den verschoben werden soll
     public void setShiftValue(int value){
+        if(value>=30){
+            value -= 30;
+        }
         String normalAlphabet = "abcdefghijklmnopqrstuvwxyzäöüß";
         String secretAlphabet = "";
         for(int i=0; i<30;i++){

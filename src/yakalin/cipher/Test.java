@@ -9,8 +9,9 @@ import javax.swing.*;
  */
 public class Test {
     public static void main(String[] args) {
-        SubstitutionCipher sc = new SubstitutionCipher("ßüöäzyxwvutsrqponmlkjihgfedcba");
+        //SubstitutionCipher sc = new SubstitutionCipher("ßüöäzyxwvutsrqponmlkjihgfedcba");
         String text = JOptionPane.showInputDialog(null,"Den zu verschlüsselnden Text eingben: ");
+        ShiftCipher sc = new ShiftCipher(5);
         JOptionPane.showMessageDialog(null, sc.encrypt(text));
         text=sc.encrypt(text);
         JOptionPane.showMessageDialog(null,sc.decrypt(text));

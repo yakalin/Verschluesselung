@@ -26,7 +26,15 @@ public class MonoAlphabeticCipher implements Cipher {
 
     //Setzt Geheimalphabet
     protected void setSecretAlphabet(String secretAlphabet){
-        this.secretAlphabet=secretAlphabet;
+        if(secretAlphabet.length()==30){
+            this.secretAlphabet=secretAlphabet;
+        }
+        else{
+            for(int i=secretAlphabet.length(); i<30;i++){
+                secretAlphabet=secretAlphabet+normalAlphabet.charAt(i);
+            }
+            this.secretAlphabet=secretAlphabet;
+        }
     }
 
     /**
@@ -39,7 +47,7 @@ public class MonoAlphabeticCipher implements Cipher {
         StringBuilder ergebnis = new StringBuilder();
         int i;
         for(char c : text.toLowerCase().toCharArray()){
-            i=text.indexOf(String.valueOf(c));
+            i=normalAlphabet.indexOf(String.valueOf(c));
             if(i>=0){
                 ergebnis.append(Character.toLowerCase(this.secretAlphabet.charAt(i)));
             }

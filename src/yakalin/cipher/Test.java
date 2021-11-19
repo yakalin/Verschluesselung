@@ -9,11 +9,10 @@ import javax.swing.*;
  */
 public class Test {
     public static void main(String[] args) {
-        MonoAlphabeticCipher mac = new MonoAlphabeticCipher();
-        String text= JOptionPane.showInputDialog(null,"Text eingeben: ");
-        mac.setSecretAlphabet("ßüöäzyxwvutsrqponmlkjihgfedcba");
-        JOptionPane.showMessageDialog(null, mac.encrypt(text));
-        text=mac.encrypt(text);
-        JOptionPane.showMessageDialog(null,mac.decrypt(text));
+        SubstitutionCipher sc = new SubstitutionCipher("ßüöäzyxwvutsrqponmlkjihgfedcba");
+        String text = JOptionPane.showInputDialog(null,"Den zu verschlüsselnden Text eingben: ");
+        JOptionPane.showMessageDialog(null, sc.encrypt(text));
+        text=sc.encrypt(text);
+        JOptionPane.showMessageDialog(null,sc.decrypt(text));
     }
 }

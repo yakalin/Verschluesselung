@@ -20,11 +20,23 @@ public class ShiftCipher extends MonoAlphabeticCipher {
         }
         String normalAlphabet = "abcdefghijklmnopqrstuvwxyzäöüß";
         String secretAlphabet = "";
-        for(int i=0; i<30;i++){
-            if(i+value>=30){
-                secretAlphabet = secretAlphabet + normalAlphabet.charAt(i + value - 30);
-            }else {
-                secretAlphabet = secretAlphabet + normalAlphabet.charAt(i + value);
+        if(value<0){
+            for(int i=0; i<30; i++){
+                if(i+value<0){
+                    secretAlphabet = secretAlphabet + normalAlphabet.charAt(i + value + 30);
+                }
+                else{
+                    secretAlphabet = secretAlphabet + normalAlphabet.charAt(value);
+                }
+            }
+        }
+        else {
+            for (int i = 0; i < 30; i++) {
+                if (i + value >= 30) {
+                    secretAlphabet = secretAlphabet + normalAlphabet.charAt(i + value - 30);
+                } else {
+                    secretAlphabet = secretAlphabet + normalAlphabet.charAt(i + value);
+                }
             }
         }
         super.setSecretAlphabet(secretAlphabet);

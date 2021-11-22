@@ -10,7 +10,7 @@ import java.awt.*;
  */
 public class CipherPanel extends JPanel{
 
-    private JButton shift, substitution;
+    private JButton shift, substitution, shiftDecrypt, substitutionDecrypt;
     private JTextField input;
     private JLabel output;
 
@@ -24,9 +24,17 @@ public class CipherPanel extends JPanel{
         substitution.addActionListener(c);
         input = new JTextField("Text eingeben",10);
         output = new JLabel("Hier steht der verschlüsselte Text");
-        JPanel buttons = new JPanel(new GridLayout(1,2));
+        shiftDecrypt = new JButton("Shift Decryption");
+        shiftDecrypt.setActionCommand("shiftDecrypt");
+        shiftDecrypt.addActionListener(c);
+        substitutionDecrypt = new JButton("Substitution Decryption");
+        substitutionDecrypt.setActionCommand("substitutionDecrypt");
+        substitutionDecrypt.addActionListener(c);
+        JPanel buttons = new JPanel(new GridLayout(2,2));
         buttons.add(shift);
         buttons.add(substitution);
+        buttons.add(shiftDecrypt);
+        buttons.add(substitutionDecrypt);
         this.add(buttons, BorderLayout.PAGE_END);
         this.add(input, BorderLayout.PAGE_START);
         this.add(output, BorderLayout.CENTER);
@@ -35,7 +43,7 @@ public class CipherPanel extends JPanel{
     public String getInput(){
         return this.input.getText();
     }
-
+    public String getOutput(){return this.output.getText();}
     public void setOutput(String text){
         this.output.setText(text);
     }

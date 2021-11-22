@@ -31,6 +31,18 @@ public class CipherController implements ActionListener{
             SubstitutionCipher sc = new SubstitutionCipher(secretAlphabet);
             cp.setOutput(sc.encrypt(text));
         }
+        if(src == "shiftDecrypt" && cp.getInput() != ""){
+            String text = cp.getOutput();
+            int value = Integer.parseInt(JOptionPane.showInputDialog(null, "Den zum Verschiebenden Wert eingeben: "));
+            ShiftCipher sc = new ShiftCipher(value);
+            cp.setOutput(sc.decrypt(text));
+        }
+        if(src == "substitutionDecrypt" && cp.getInput() != ""){
+            String text = cp.getOutput();
+            String secretAlphabet = JOptionPane.showInputDialog(null,"Das Geheimalphabet angeben: ");
+            SubstitutionCipher sc = new SubstitutionCipher(secretAlphabet);
+            cp.setOutput(sc.decrypt(text));
+        }
     }
 
     public static void main(String[] args) {

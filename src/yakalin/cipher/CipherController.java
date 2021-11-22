@@ -19,23 +19,27 @@ public class CipherController implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e){
         String src = e.getActionCommand();
+
         if(src == "shift" && cp.getInput() != "") {
             String text = cp.getInput();
             int value = Integer.parseInt(JOptionPane.showInputDialog(null, "Den zum Verschiebenden Wert eingeben: "));
-            ShiftCipher sc = new ShiftCipher(value);
-            cp.setOutput(sc.encrypt(text));
+            mac = new ShiftCipher(value);
         }
         if(src == "substitution" && cp.getInput() != ""){
-            String text = cp.getInput();
             String secretAlphabet = JOptionPane.showInputDialog(null,"Das Geheimalphabet angeben: ");
-            SubstitutionCipher sc = new SubstitutionCipher(secretAlphabet);
-            cp.setOutput(sc.encrypt(text));
+            mac = new SubstitutionCipher(secretAlphabet);
+        }
+        if(src == "shiftEncrypt" && cp.getInput() != ""){
+            String text = cp.getInput();
+            cp.setOutput(mac.encrypt(text));
+        }
+        if(src == "substitutionEncrypt" && cp.getInput() != ""){
+            String text = cp.getInput();
+            cp.setOutput(mac.encrypt(text));
         }
         if(src == "shiftDecrypt" && cp.getInput() != ""){
             String text = cp.getOutput();
-            int value = Integer.parseInt(JOptionPane.showInputDialog(null, "Den zum Verschiebenden Wert eingeben: "));
-            ShiftCipher sc = new ShiftCipher(value);
-            cp.setOutput(sc.decrypt(text));
+            cp.setOutput(mac.decrypt(text));
         }
         if(src == "substitutionDecrypt" && cp.getInput() != ""){
             String text = cp.getOutput();

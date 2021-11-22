@@ -10,7 +10,7 @@ import java.awt.*;
  */
 public class CipherPanel extends JPanel{
 
-    private JButton shift, substitution, shiftDecrypt, substitutionDecrypt;
+    private JButton shift, substitution, shiftEncrypt, substitutionEncrypt, shiftDecrypt, substitutionDecrypt;
     private JTextField input;
     private JLabel output;
 
@@ -24,15 +24,23 @@ public class CipherPanel extends JPanel{
         substitution.addActionListener(c);
         input = new JTextField("Text eingeben",10);
         output = new JLabel("Hier steht der verschlüsselte Text");
+        shiftEncrypt = new JButton("Shift Encryption");
+        shiftEncrypt.setActionCommand("shiftEncrypt");
+        shiftEncrypt.addActionListener(c);
+        substitutionEncrypt = new JButton("Substitution Encryption");
+        substitutionEncrypt.setActionCommand("substitutionEncrypt");
+        substitutionEncrypt.addActionListener(c);
         shiftDecrypt = new JButton("Shift Decryption");
         shiftDecrypt.setActionCommand("shiftDecrypt");
         shiftDecrypt.addActionListener(c);
         substitutionDecrypt = new JButton("Substitution Decryption");
         substitutionDecrypt.setActionCommand("substitutionDecrypt");
         substitutionDecrypt.addActionListener(c);
-        JPanel buttons = new JPanel(new GridLayout(2,2));
+        JPanel buttons = new JPanel(new GridLayout(3,2));
         buttons.add(shift);
         buttons.add(substitution);
+        buttons.add(shiftEncrypt);
+        buttons.add(substitutionEncrypt);
         buttons.add(shiftDecrypt);
         buttons.add(substitutionDecrypt);
         this.add(buttons, BorderLayout.PAGE_END);

@@ -52,6 +52,11 @@ public class CipherController implements ActionListener{
             TranspositionCipher tc = new TranspositionCipher(Integer.parseInt(cp.getLevel()));
             cp.setOutput(tc.encrypt(text));
         }
+        if(src == "transpositionDecrypt" && cp.getInput() != ""){
+            String text = cp.getInput();
+            TranspositionCipher tc = new TranspositionCipher(Integer.parseInt(cp.getLevel()));
+            cp.setOutput(tc.decrypt(text));
+        }
     }
 
     public static void main(String[] args) {

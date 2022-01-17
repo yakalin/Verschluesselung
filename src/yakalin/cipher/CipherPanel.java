@@ -51,6 +51,7 @@ public class CipherPanel extends JPanel{
         buttons.add(shiftDecrypt);
         buttons.add(substitutionDecrypt);
         buttons.add(transpositionEncrypt);
+        buttons.add(transpositionDecrypt);
         JPanel inputs = new JPanel(new GridLayout(1,2));
         inputs.add(input);
         inputs.add(level);

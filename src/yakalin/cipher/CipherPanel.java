@@ -10,8 +10,8 @@ import java.awt.*;
  */
 public class CipherPanel extends JPanel{
 
-    private JButton shift, substitution, shiftEncrypt, substitutionEncrypt, shiftDecrypt, substitutionDecrypt;
-    private JTextField input;
+    private JButton shift, substitution, shiftEncrypt, substitutionEncrypt, shiftDecrypt, substitutionDecrypt, transpositionEncrypt, transpositionDecrypt;
+    private JTextField input, level;
     private JLabel output;
 
     public CipherPanel(CipherController c){
@@ -36,15 +36,26 @@ public class CipherPanel extends JPanel{
         substitutionDecrypt = new JButton("Substitution Decryption");
         substitutionDecrypt.setActionCommand("substitutionDecrypt");
         substitutionDecrypt.addActionListener(c);
-        JPanel buttons = new JPanel(new GridLayout(3,2));
+        transpositionEncrypt = new JButton("Transposition Encryption");
+        transpositionEncrypt.setActionCommand("transpositionEncrypt");
+        transpositionEncrypt.addActionListener(c);
+        transpositionDecrypt = new JButton("Transposition Decryption");
+        transpositionDecrypt.setActionCommand("transpositionDecrypt");
+        transpositionDecrypt.addActionListener(c);
+        level = new JTextField("Level eingeben: ",10);
+        JPanel buttons = new JPanel(new GridLayout(4,2));
         buttons.add(shift);
         buttons.add(substitution);
         buttons.add(shiftEncrypt);
         buttons.add(substitutionEncrypt);
         buttons.add(shiftDecrypt);
         buttons.add(substitutionDecrypt);
+        buttons.add(transpositionEncrypt);
+        JPanel inputs = new JPanel(new GridLayout(1,2));
+        inputs.add(input);
+        inputs.add(level);
         this.add(buttons, BorderLayout.PAGE_END);
-        this.add(input, BorderLayout.PAGE_START);
+        this.add(inputs, BorderLayout.PAGE_START);
         this.add(output, BorderLayout.CENTER);
     }
 
@@ -54,5 +65,8 @@ public class CipherPanel extends JPanel{
     public String getOutput(){return this.output.getText();}
     public void setOutput(String text){
         this.output.setText(text);
+    }
+    public String getLevel(){
+        return this.level.getText();
     }
 }

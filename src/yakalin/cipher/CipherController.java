@@ -47,6 +47,11 @@ public class CipherController implements ActionListener{
             SubstitutionCipher sc = new SubstitutionCipher(secretAlphabet);
             cp.setOutput(sc.decrypt(text));
         }
+        if(src == "transpositionEncrypt" && cp.getInput() != ""){
+            String text = cp.getInput();
+            TranspositionCipher tc = new TranspositionCipher(Integer.parseInt(cp.getLevel()));
+            cp.setOutput(tc.encrypt(text));
+        }
     }
 
     public static void main(String[] args) {

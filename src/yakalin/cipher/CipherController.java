@@ -57,6 +57,18 @@ public class CipherController implements ActionListener{
             TranspositionCipher tc = new TranspositionCipher(Integer.parseInt(cp.getLevel()));
             cp.setOutput(tc.decrypt(text));
         }
+        if(src == "keywordEncrypt" && cp.getInput() != ""){
+            String text = cp.getInput();
+            String keyword = JOptionPane.showInputDialog(null,"Keyword eingeben: ");
+            mac = new KeywordCipher(keyword);
+            cp.setOutput(mac.encrypt(text));
+        }
+        if(src == "keywordDecrypt" && cp.getInput() != ""){
+            String text = cp.getInput();
+            String keyword = JOptionPane.showInputDialog(null,"Keyword eingeben: ");
+            mac = new KeywordCipher(keyword);
+            cp.setOutput(mac.decrypt(text));
+        }
     }
 
     public static void main(String[] args) {

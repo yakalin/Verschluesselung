@@ -10,7 +10,7 @@ import java.awt.*;
  */
 public class CipherPanel extends JPanel{
 
-    private JButton shift, substitution, shiftEncrypt, substitutionEncrypt, shiftDecrypt, substitutionDecrypt, transpositionEncrypt, transpositionDecrypt;
+    private JButton shift, substitution, shiftEncrypt, substitutionEncrypt, shiftDecrypt, substitutionDecrypt, transpositionEncrypt, transpositionDecrypt, keywordEncrypt, keywordDecrypt;
     private JTextField input, level;
     private JLabel output;
 
@@ -43,7 +43,13 @@ public class CipherPanel extends JPanel{
         transpositionDecrypt.setActionCommand("transpositionDecrypt");
         transpositionDecrypt.addActionListener(c);
         level = new JTextField("Level eingeben: ",10);
-        JPanel buttons = new JPanel(new GridLayout(4,2));
+        keywordEncrypt = new JButton("Keyword Encryption");
+        keywordEncrypt.setActionCommand("keywordEncrypt");
+        keywordEncrypt.addActionListener(c);
+        keywordDecrypt = new JButton("Keyword Decryption");
+        keywordDecrypt.setActionCommand("keywordDecrypt");
+        keywordDecrypt.addActionListener(c);
+        JPanel buttons = new JPanel(new GridLayout(5,2));
         buttons.add(shift);
         buttons.add(substitution);
         buttons.add(shiftEncrypt);
@@ -52,6 +58,8 @@ public class CipherPanel extends JPanel{
         buttons.add(substitutionDecrypt);
         buttons.add(transpositionEncrypt);
         buttons.add(transpositionDecrypt);
+        buttons.add(keywordEncrypt);
+        buttons.add(keywordDecrypt);
         JPanel inputs = new JPanel(new GridLayout(1,2));
         inputs.add(input);
         inputs.add(level);
